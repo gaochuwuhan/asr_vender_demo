@@ -7,3 +7,7 @@ API key
 
 https://github.com/aliyun/alibabacloud-bailian-speech-demo/tree/master
 
+## 依赖安装
+
+brew install portaudio
+pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple

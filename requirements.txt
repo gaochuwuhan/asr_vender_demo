@@ -1,2 +1,2 @@
-dashscope
-pyaudio
+dashscope==1.22.2
+pyaudio==0.2.14
