@@ -1,4 +1,7 @@
+import logging
 import time
+
+from config import setup_custom_logger
 
 bailian_api_key = 'sk-ca3dbfd800ff441cb5be165d82c3390d'
 # For prerequisites running the following sample, visit https://help.aliyun.com/zh/model-studio/getting-started/first-api-call-to-qwen
@@ -168,6 +171,7 @@ def wav_demo():
                 # 一句完整的话sentence里包含end_time
                 if sentence_end:
                     sentence_info = f"{sentence_end}##UNKNOWSPK##{sentence['begin_time']}##{sentence['end_time']}##{sentence['text']}"
+                    logging.info(f'{sentence_info}')
                 else:
                     # 没说完的话end_time 在words中
                     if len(sentence["words"]) > 1:
@@ -176,7 +180,6 @@ def wav_demo():
                         sentence_end_time = sentence["begin_time"]
                     sentence_info = f"{sentence_end}##UNKNOWSPK##{sentence['begin_time']}##{sentence_end_time}##{sentence['text']}"
                 # print(get_timestamp() + ' RecognitionCallback text: ', sentence['text'])
-                print('RecognitionCallback text: ', sentence_info)
                 # print("===words:", sentence['words'])
                 # if RecognitionResult.is_sentence_end(sentence):
                 #     print(get_timestamp() +
@@ -226,6 +229,7 @@ def wav_demo():
 
 # main function
 if __name__ == '__main__':
+    setup_custom_logger()
     init_dashscope_api_key()
     print('Initializing ...')
     # 麦克风asr
